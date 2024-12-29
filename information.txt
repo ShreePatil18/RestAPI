@@ -1,0 +1,36 @@
+Flask App Features
+This Flask application manages user registration, login, and allows you to mark phone numbers as spam. It stores user data in a MySQL database and monitors spam reports using JWT (JSON Web Token) authentication. The application has these main features:
+
+1. User Registration
+Endpoint: /users/register (post request)
+Description: A new user can register by entering their name, email, phone number, and password.
+Security: Passwords are hashed (encrypted) before being stored in the database.
+Response:
+Success: The user successfully registered.
+Error: If the phone number already exists, it will return an error.
+
+2. User Login URL: /users/login (POST request)
+Description: Allows a registered user to log in using their phone number and password.
+Security: If the credentials are valid, an access token (JWT) is generated for authentication.
+Response: Success: Returns an access token to the user.
+Error: If the credentials are invalid, it returns an error.
+
+3. Search User Endpoint: /users/search (get request)
+Description: A logged-in user can search for another user using their phone number.
+Security: The user must log in (JWT token required).
+Response: Success! Retrieves user information (name, phone number, and spam count).
+Error: If the user cannot be discovered or there is a problem with the request, an error message is returned.
+
+4. Mark the phone number as Spam.
+Endpoint: /users/addspam (post request)
+Description: A logged-in user can mark a phone number as spam.
+Security: The user must log in (JWT token required).
+Response:
+Success: Marks the phone number as spam and keeps a record.
+Error: If there is an issue with the database or request, an error message is returned.
+
+Technologies Used
+Flask: A Python web framework used to create the API.
+JWT (JSON Web Token): Used to authenticate users and manage sessions.
+Flask-Bcrypt: Used to securely hash passwords.
+MySQL: For storing user and spam information.
